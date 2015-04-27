@@ -101,6 +101,11 @@ echo $ISSUE_DESC
 DESC=${ISSUE_DESC//_/ }
 echo $DESC
 
+# Issue number is not mandatory
+# if [ "$ISSUE_NO" == "" ];then
+#   ISSUE_NO=''
+# fi 
+
 msg='Issue #'$ISSUE_NO': '$DESC
 echo $msg
 
