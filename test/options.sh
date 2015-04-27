@@ -11,10 +11,10 @@ while [ "$1" != "" ]; do
     case $1 in
         -n | --issue_number )
             echo " issue_number:"$2
-            if [ "$2" == "" ];then
-                echo ' Issue number is mandatory'
-                usage
-            fi 
+            # if [ "$2" == "" ];then
+            #     echo ' Issue number is mandatory'
+            #     usage
+            # fi 
             ISSUE_NO=$2
             ;;
         -d | --issue_description )
@@ -43,11 +43,11 @@ done
 # Validating mandatory fields
 
 if [ "$ISSUE_DESC" == "" ];then
-    echo ' Issue number is mandatory'
+    echo ' Issue description is mandatory'
     usage
 fi 
-if [ "$ISSUE_NO" == "" ];then
-    echo ' Issue number is mandatory'
-    usage
-fi 
+# if [ "$ISSUE_NO" == "" ];then
+#     echo ' Issue number is mandatory'
+#     usage
+# fi
 echo 'Parameters received :' $ISSUE_NO, $ISSUE_DESC, $EDIT_COMMIT_MSG, $ROOT_BRANCH
