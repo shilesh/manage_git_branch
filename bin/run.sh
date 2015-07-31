@@ -19,14 +19,7 @@ echo '..........  ..........  ..........  ..........'
 #TODO : Make sure at least one arg present
 #TODO : if third is not present default to 'master'
 #TODO : $3 Use options, 'yes'
-ISSUE_NO=$1
-ISSUE_DESC=$2
-EDIT_COMMIT_MSG=$3
-ROOT_BRANCH=$4
 
-DEV_BRANCH=$ISSUE_NO'_'$ISSUE_DESC
-
-echo $DEV_BRANCH
 
 ISSUE_URL='https://themelt.atlassian.net/browse'
 
@@ -59,33 +52,11 @@ while getopts ":n:d:u:b:h:" opt; do
   esac
 done
 
-# while [ "$1" != "" ]; do
-#     case $1 in
-#         -n | --issue_number )
-#                                 echo " issue_number:"$2
-#                                 ISSUE_NO=$2
-#                                 ;;
-#         -d | --issue_description )
-#                                 if [ "$1" == "" ];then
-#                                     echo ' Issue description is mandatory'
-#                                     usage
-#                                 fi
-#                                 ISSUE_DESC=$1
-#                                 ;;
-#         -u | --update_message )
-#                                 EDIT_COMMIT_MSG=$1
-#                                 ;;
-#         -b | --base_branch )
-#                                 ROOT_BRANCH=$1
-#                                 ;;
-#         -h | --help )
-#                                 usage
-#                                 exit
-#                                 ;;
-#         * )
-#     esac
-#     shift
-# done
+DEV_BRANCH=$ISSUE_NO'_'$ISSUE_DESC
+
+echo $ISSUE_NO
+echo $ISSUE_DESC
+echo 'New branch will be -> '$DEV_BRANCH
 
 # Validating mandatory fields
 
@@ -129,14 +100,15 @@ echo $DESC
 msg='Issue #'$ISSUE_NO': '$DESC
 echo $msg
 
-echo $msg > .gitmessage
-echo '' >> .gitmessage
+echo $msg > ~/.gitmessage
+echo '' >> ~/.gitmessage
 
-echo $ISSUE_URL'/'$ISSUE_NO >> .gitmessage
-echo '' >> .gitmessage
+echo $ISSUE_URL'/'$ISSUE_NO >> ~/.gitmessage
+echo '' >> ~/.gitmessage
 
-echo '<Add description here>' >> .gitmessage
-echo '' >> .gitmessage
+echo '<Add description here>' >> ~/.gitmessage
+echo '' >> ~/.gitmessage
+
 # sed -i -e 's/_/ /g' .gitmessage: Not required
 
 echo "DONE"
