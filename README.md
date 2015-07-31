@@ -8,6 +8,8 @@ only description is mandatory
 
 # Usage
 
+  Place the executable file (bin/run.sh) in ROOT folder of your project.
+  
   ```
   ./run.sh -d <issue_description> -n <issue_number> -u <update commit message template? (0/1)> -b <base branch for the new branch>
   ```
