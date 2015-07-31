@@ -11,21 +11,15 @@
 # $# total number of parameters
 # $@ all the parameters will be listed
 
-echo " You are here;" 
+echo '..........  ..........  ..........  ..........'
+echo " You are here;"
 pwd
 echo '..........  ..........  ..........  ..........'
 
 #TODO : Make sure at least one arg present
 #TODO : if third is not present default to 'master'
 #TODO : $3 Use options, 'yes'
-ISSUE_NO=$1
-ISSUE_DESC=$2
-EDIT_COMMIT_MSG=$3
-ROOT_BRANCH=$4
 
-DEV_BRANCH=$ISSUE_NO'_'$ISSUE_DESC
-
-echo $DEV_BRANCH
 
 ISSUE_URL='https://themelt.atlassian.net/browse'
 
@@ -33,46 +27,43 @@ ISSUE_URL='https://themelt.atlassian.net/browse'
 
 function usage
 {
+
+    echo "************************* ************************* ************************* ************************* *************************"
     echo "Usage:"
-    echo "./run.sh -d <issue_description> -n <issue_number> -m <update commit message template? (0/1)> -b <base branch for the new branch>"
+    echo "./run.sh -d <issue_description> -n <issue_number> -u <update commit message template? (0/1)> -b <base branch for the new branch>"
+    echo "************************* ************************* ************************* ************************* *************************"
     exit
 }
 
-
-while [ "$1" != "" ]; do
-    case $1 in
-        -n | --issue_number )
-                                echo " issue_number:"$2
-                                ISSUE_NO=$2
-                                ;;
-        -d | --issue_description )
-                                if [ "$1" == "" ];then
-                                    echo ' Issue description is mandatory'
-                                    usage
-                                fi
-                                ISSUE_DESC=$1
-                                ;;
-        -u | --update_message )
-                                EDIT_COMMIT_MSG=$1
-                                ;;
-        -b | --base_branch ) 
-                                ROOT_BRANCH=$1
-                                ;;
-        -h | --help ) 
-                                usage
-                                exit
-                                ;;
-        * )                     
-    esac
-    shift
+while getopts ":n:d:u:b:h:" opt; do
+  case $opt in
+    n) ISSUE_NO="$OPTARG"
+    ;;
+    d) ISSUE_DESC="$OPTARG"
+    ;;
+    u) EDIT_COMMIT_MSG="$OPTARG"
+    ;;
+    b) ROOT_BRANCH="$OPTARG"
+    ;;
+    h) usage
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2
+    ;;
+  esac
 done
+
+DEV_BRANCH=$ISSUE_NO'_'$ISSUE_DESC
+
+echo $ISSUE_NO
+echo $ISSUE_DESC
+echo 'New branch will be -> '$DEV_BRANCH
 
 # Validating mandatory fields
 
 if [ "$ISSUE_DESC" == "" ];then
     echo ' Issue description is mandatory'
     usage
-fi 
+fi
 
 ##### git process starts
 
@@ -104,19 +95,20 @@ echo $DESC
 # Issue number is not mandatory
 # if [ "$ISSUE_NO" == "" ];then
 #   ISSUE_NO=''
-# fi 
+# fi
 
 msg='Issue #'$ISSUE_NO': '$DESC
 echo $msg
 
-echo $msg > .gitmessage 
-echo '' >> .gitmessage 
+echo $msg > ~/.gitmessage
+echo '' >> ~/.gitmessage
 
-echo $ISSUE_URL'/'$ISSUE_NO >> .gitmessage
-echo '' >> .gitmessage 
+echo $ISSUE_URL'/'$ISSUE_NO >> ~/.gitmessage
+echo '' >> ~/.gitmessage
 
-echo '<Add description here>' >> .gitmessage 
-echo '' >> .gitmessage 
+echo '<Add description here>' >> ~/.gitmessage
+echo '' >> ~/.gitmessage
+
 # sed -i -e 's/_/ /g' .gitmessage: Not required
 
 echo "DONE"
