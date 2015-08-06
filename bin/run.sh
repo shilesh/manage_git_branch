@@ -100,14 +100,14 @@ echo $DESC
 msg='Issue #'$ISSUE_NO': '$DESC
 echo $msg
 
-echo $msg > ~/.gitmessage
-echo '' >> ~/.gitmessage
+echo $msg > ~/.gitmessage.txt
+echo '' >> ~/.gitmessage.txt
 
-echo $ISSUE_URL'/'$ISSUE_NO >> ~/.gitmessage
-echo '' >> ~/.gitmessage
+echo $ISSUE_URL'/'$ISSUE_NO >> ~/.gitmessage.txt
+echo '' >> ~/.gitmessage.txt
 
-echo '<Add description here>' >> ~/.gitmessage
-echo '' >> ~/.gitmessage
+echo '<Add description here>' >> ~/.gitmessage.txt
+echo '' >> ~/.gitmessage.txt
 
 # sed -i -e 's/_/ /g' .gitmessage: Not required
 
