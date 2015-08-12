@@ -8,14 +8,14 @@ only description is mandatory
 
 # Usage
 
-  Place the executable file (bin/run.sh) in ROOT folder of your project.
+  Place the executable file (bin/setup_branch.sh) in ROOT folder of your project.
   
   ```
-  ./run.sh -d <issue_description> -n <issue_number> -u <update commit message template? (0/1)> -b <base branch for the new branch>
+  ./setup_branch.sh -d <issue_description> -n <issue_number> -u <update commit message template? (0/1)> -b <base branch for the new branch>
   ```
   
   ```
-  Ex: sh bin/run.sh -d change_email_template -n 0011 -u 1 -b email
+  Ex: sh bin/setup_branch.sh -d change_email_template -n 0011 -u 1 -b email
   ```
   
   Above command will create a new branch '0011-change_email_template' from 'email' branch after getting the latest from email, Also will be checked out in to  '0011-change_email_template'. 
