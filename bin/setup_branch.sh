@@ -18,7 +18,7 @@ function usage
 
     echo "************************* ************************* ************************* ************************* *************************"
     echo "Usage:"
-    echo "./run.sh -d <issue_description> -n <issue_number> -u <update commit message template? (0/1)> -b <base branch for the new branch>"
+    echo "./setup_branch.sh -d <issue_description> -n <issue_number> -u <update commit message template? (0/1)> -b <base branch for the new branch>"
     echo "************************* ************************* ************************* ************************* *************************"
     exit
 }
