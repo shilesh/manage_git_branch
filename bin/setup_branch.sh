@@ -1,24 +1,12 @@
+#!/usr/bin
+
 # Linux only
-# dev_branch <branch_name> [options]
-# option to include ROOT_BRANCH, default master.
-
-# Ex: sh dev_branch.sh issue_no, issue_desc yes master
-
-# $0 is the name of the command
-# $1 first parameter
-# $2 second parameter
-# $3 third parameter etc. etc
-# $# total number of parameters
-# $@ all the parameters will be listed
+# Ex: ./setup_branch.sh -h
 
 echo '..........  ..........  ..........  ..........'
 echo " You are here;"
 pwd
 echo '..........  ..........  ..........  ..........'
-
-#TODO : Make sure at least one arg present
-#TODO : if third is not present default to 'master'
-#TODO : $3 Use options, 'yes'
 
 
 ISSUE_URL='https://themelt.atlassian.net/browse'
